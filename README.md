@@ -7,17 +7,17 @@
  - Change file permissions so it can be run without root:
 
 ```
-    sudo chmod +r /dev/ttyUSB0
-    sudo chmod +r /etc/iscsi/initiatorname.iscs
+sudo chmod +r /dev/ttyUSB0
+sudo chmod +r /etc/iscsi/initiatorname.iscsi
 ```
 
  - (Changing the serial device as appropriate) then to compile:
 
 ```
-    source /opt/ros/humble/setup.bash
-    rosdep install -i --from-path src --rosdistro humble -y
-    colcon build --packages-select telemetry
-    . install/setup.bash
+source /opt/ros/humble/setup.bash
+rosdep install -i --from-path src --rosdistro humble -y
+colcon build --packages-select telemetry
+. install/setup.bash
 ```
 
  - To run:
@@ -27,6 +27,6 @@
  - To read publisher:
 
 ```
-    ros2 topic list
-    ros2 topic echo rtk_top
+ros2 topic list
+ros2 topic echo rtk_top
 ```
