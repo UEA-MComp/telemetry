@@ -61,13 +61,7 @@ class RTKRCV:
         cmd = [shutil.which("rtkrcv"), "-o", self.conf_path, "-p", str(self.telnet_port), "-w", self.telnet_passwd]
         print("Attempting RTKRTV startup with command '%s'" % " ".join(cmd))
 
-        self.proc = subprocess.Popen(
-            cmd,
-            stdout = subprocess.PIPE,
-            stdin = subprocess.PIPE,
-            stderr = subprocess.PIPE
-        )
-        time.sleep(1)
+        subprocess.run(cmd)
 
         if self.autostart:
             self.start()
@@ -86,8 +80,6 @@ class RTKRCV:
             tn.write(message.encode("ascii") + b"\r\n")
             if message == "shutdown":
                 print("Shutdown command sent")
-                time.sleep(0.5)
-                self.proc.kill()
                 return
             resp = tn.read_until(b"rtkrcv> ")
 
@@ -169,10 +161,5 @@ class RTKRCV:
         """log [file|off]        : start/stop log to file"""
         return self._send_and_respond("log")
 
-if __name__ == "__main__":
-    with RTKRCV(sys.argv[1]) as rtkrcv:
-        print(rtkrcv.help())
-        time.sleep(20)
-        print(rtkrcv.status())
-        time.sleep(2000)
+
 
