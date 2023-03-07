@@ -1,6 +1,7 @@
 from setuptools import setup
 
 package_name = 'telemetry'
+serversidelibs_path = "../../../server-dockerfiles/server-side"
 
 setup(
     name=package_name,
@@ -10,11 +11,11 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('lib/' + package_name, [package_name+'/rtklib.py']),
+        ('lib/' + package_name, [serversidelibs_path+'/database.py', serversidelibs_path+'/models.py']),
     ],
     package_data={'': ['*.conf']},
     include_package_data=True,
-    install_requires=['setuptools', "python-dotenv"],
+    install_requires=['setuptools', "python-dotenv", "pynmeagps", "PyMySQL"],
     zip_safe=True,
     maintainer='Eden Attenborough',
     maintainer_email='gae19jtu@uea.ac.uk',
@@ -23,7 +24,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'rtkrcv = telemetry.rtkrcv:main'
+            'telemetry = telemetry.telemetry:main',
+            'nmea_logger = telemetry.nmea_logger:main'
         ],
     },
 )

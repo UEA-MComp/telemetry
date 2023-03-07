@@ -13,30 +13,22 @@ class RTKRCV:
     """Wrapper class for ``rtklib``'s ``rtkrcv`` command. Designed to be used
     within a ``with`` block which creates and destroys the ``rtkrcv`` thread
     nicely. e.g.:
-
     .. code-block:: python
-
         with RTKRCV(sys.argv[1]) as rtkrcv:
             print(rtkrcv.status())
             time.sleep(2)
-
     This wrapper class communicates with the ``rtkrcv`` thread with the telnet protocol.
     The ``rtkrcv`` is started at port ``telnet_port`` with password ``telnet_passwd`` which
     is 2101 and randomly generated respectively, but this can be overridden. ``autostart``
     automatically runs the `start` command after instansiation. 
-
     Arguments:
         conf_path (str): Path to the ``rtkrcv`` config path to use. Also see :func:`start`
         telnet_port (int): Path for the telnet port for communication (default: 2120)
         telnet_passwd (str): Password for telnet communication. Generated randomly by default
         autostart (bool): If set to ``True``, :func:`start` will be run automatically after instansiation
-
     .. todo::
-
         At the moment, arguments for ``rtkrcv`` commands are not yet implemented, only the command alone
-
     .. warning::
-
         This class uses :external+python:py:class:`telnetlib.Telnet`, which will be removed in Python 3.13.
     """
 
@@ -61,14 +53,22 @@ class RTKRCV:
         cmd = [shutil.which("rtkrcv"), "-o", self.conf_path, "-p", str(self.telnet_port), "-w", self.telnet_passwd]
         print("Attempting RTKRTV startup with command '%s'" % " ".join(cmd))
 
-        subprocess.run(cmd)
+        self.proc = subprocess.Popen(
+            cmd,
+            stdout = subprocess.PIPE,
+            stdin = subprocess.PIPE,
+            stderr = subprocess.PIPE
+        )
+        
 
         if self.autostart:
+            time.sleep(1)
             self.start()
         
         return self
 
     def __exit__(self, type, value, traceback):
+        print("Shutdown signal recieved")
         self._send_and_respond("shutdown")
 
     def _send_and_respond(self, message: str):
@@ -80,6 +80,8 @@ class RTKRCV:
             tn.write(message.encode("ascii") + b"\r\n")
             if message == "shutdown":
                 print("Shutdown command sent")
+                time.sleep(0.5)
+                self.proc.kill()
                 return
             resp = tn.read_until(b"rtkrcv> ")
 
@@ -92,13 +94,12 @@ class RTKRCV:
         """
         start                 : start rtk server
         
-
         .. warning::
-
             So that this can be executed without interaction, config option keys containing the
             strings ``"logstr"`` and ``"path"`` that have a value which is a file on disk will
             be removed.
         """
+        print("Sent start signal")
         return self._send_and_respond("start")
 
     def stop(self):
@@ -161,5 +162,9 @@ class RTKRCV:
         """log [file|off]        : start/stop log to file"""
         return self._send_and_respond("log")
 
-
-
+if __name__ == "__main__":
+    with RTKRCV(sys.argv[1]) as rtkrcv:
+        time.sleep(60 * 3)
+        print(rtkrcv.satellite())
+        while True:
+            time.sleep(10)

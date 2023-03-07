@@ -16,6 +16,12 @@
 sudo chmod +r /etc/iscsi/initiatorname.iscsi
 ```
 
+ - Start the `rtkrcv` process:
+
+```
+tmux new-session -d -s "rtkrcv" 'bash -ic "python3 rtklib.py 11feb-linux.conf" || bash && bash'
+```
+
  - (Changing the serial device as appropriate) then to compile:
 
 ```
@@ -27,7 +33,7 @@ colcon build --packages-select telemetry
 
  - To run:
 
-`ros2 run telemetry rtkrcv`
+`ros2 run telemetry telemetry`
 
  - To read publisher:
 
