@@ -13,21 +13,27 @@ class RTKRCV:
     """Wrapper class for ``rtklib``'s ``rtkrcv`` command. Designed to be used
     within a ``with`` block which creates and destroys the ``rtkrcv`` thread
     nicely. e.g.:
+
     .. code-block:: python
+        
         with RTKRCV(sys.argv[1]) as rtkrcv:
             print(rtkrcv.status())
             time.sleep(2)
+
     This wrapper class communicates with the ``rtkrcv`` thread with the telnet protocol.
     The ``rtkrcv`` is started at port ``telnet_port`` with password ``telnet_passwd`` which
     is 2101 and randomly generated respectively, but this can be overridden. ``autostart``
     automatically runs the `start` command after instansiation. 
+
     Arguments:
         conf_path (str): Path to the ``rtkrcv`` config path to use. Also see :func:`start`
         telnet_port (int): Path for the telnet port for communication (default: 2120)
         telnet_passwd (str): Password for telnet communication. Generated randomly by default
         autostart (bool): If set to ``True``, :func:`start` will be run automatically after instansiation
+
     .. todo::
         At the moment, arguments for ``rtkrcv`` commands are not yet implemented, only the command alone
+        
     .. warning::
         This class uses :external+python:py:class:`telnetlib.Telnet`, which will be removed in Python 3.13.
     """

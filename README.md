@@ -31,6 +31,9 @@ colcon build --packages-select telemetry
 . install/setup.bash
 ```
 
+ - Set fastdds discovery server environment variable: `export ROS_DISCOVERY_SERVER=10.13.13.4:11811`
+ - Set domain: `export ROS2_DOMAIN_ID=142`
+
  - To run:
 
 `ros2 run telemetry telemetry`

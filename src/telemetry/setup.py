@@ -1,7 +1,7 @@
 from setuptools import setup
 
 package_name = 'telemetry'
-serversidelibs_path = "../../../server-dockerfiles/server-side"
+serversidelibs_path = "../server-dockerfiles/server-side"
 
 setup(
     name=package_name,
@@ -13,7 +13,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('lib/' + package_name, [serversidelibs_path+'/database.py', serversidelibs_path+'/models.py']),
     ],
-    package_data={'': ['*.conf']},
+    package_data={'': ['*.conf', "*.env"]},
     include_package_data=True,
     install_requires=['setuptools', "python-dotenv", "pynmeagps", "PyMySQL"],
     zip_safe=True,
