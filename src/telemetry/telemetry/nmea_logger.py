@@ -20,7 +20,7 @@ if not os.path.exists(".docker"):
     db_host = "192.168.1.5"
     LOGS_PATH = "/home/pi/logs" # no trailing slashes please
 else:
-    db_host = "db"
+    db_host = os.environ["HOST_IP"]
     LOGS_PATH = "/logs"
 
 class LocationSubscriber(Node):
@@ -40,7 +40,7 @@ class LocationSubscriber(Node):
         json_ = json.loads(msg.data)
         nmea_sentence = base64.b64decode(json_["nmea"])
         parsed_sentence = pynmeagps.NMEAReader.parse(nmea_sentence)
-        # self.get_logger().info("Recieved NMEA message '%s' from '%s'" % (str(nmea_sentence), json_["iqn"]))
+        self.get_logger().info("Recieved NMEA message '%s' from '%s'" % (str(nmea_sentence), json_["iqn"]))
         if parsed_sentence.msgID == "GGA":
             print(parsed_sentence.lat, parsed_sentence.alt, parsed_sentence.lon, parsed_sentence.time)
 
