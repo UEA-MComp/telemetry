@@ -1,3 +1,7 @@
 [submodule "src/server-dockerfiles"]
 	path = src/server-dockerfiles
 	url = https://github.com/UEA-MComp/server-dockerfiles
+[submodule "src/nmea_navsat_driver"]
+	path = src/nmea_navsat_driver
+	url = git@github.com:UEA-MComp/nmea_navsat_driver.git
+	branch = ros2
