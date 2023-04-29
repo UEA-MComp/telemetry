@@ -1,8 +1,12 @@
 ## Setup notes
 
- - Add the user to the `dialout` group so serial devices can be accessed without root:
+ - Add the user to the `dialout` and `tty` groups so serial devices can be accessed without root:
 
 `sudo usermod -a -G dialout $USER`
+
+`sudo usermod -a -G tty $user`
+
+`sudo chmod a+rw /dev/ttyS0`
 
  - Reboot
 

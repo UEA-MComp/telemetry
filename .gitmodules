@@ -5,3 +5,6 @@
 	path = src/nmea_navsat_driver
 	url = git@github.com:UEA-MComp/nmea_navsat_driver.git
 	branch = ros2
+[submodule "src/BNO085-ROS2-Node"]
+	path = src/BNO085-ROS2-Node
+	url = git@github.com:UEA-MComp/BNO085-ROS2-Node.git
