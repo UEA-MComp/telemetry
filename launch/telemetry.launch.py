@@ -43,7 +43,8 @@ def generate_launch_description():
     rtk_tf2_node = actions.Node(
         package = "tf2_ros",
         executable = "static_transform_publisher",
-        arguments = ["0.05", "0", "0", "0", "0", "0", "base_link", "rtk_link"]
+        output = "screen",
+        arguments = ["-0.11", "0", "0.10", "0", "0", "0", "base_link", "rtk_link"]
     )
 
 
@@ -61,7 +62,7 @@ def generate_launch_description():
         navsat_node,
         telemetry_node,
         imu_node,
-        rtk_tf2_node,
+#        rtk_tf2_node,
     ])
 
 
