@@ -48,3 +48,11 @@ colcon build --packages-select telemetry
 ros2 topic list
 ros2 topic echo rtk_top
 ```
+
+(Or just use one of the launch files...)
+
+## `robot_localization` install notes
+
+You might need to install:
+`sudo apt install libgeographic-dev ros-humble-geographic-msgs ros-humble-diagnostic-updater
+
