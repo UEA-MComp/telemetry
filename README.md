@@ -35,6 +35,18 @@ colcon build --packages-select telemetry
 . install/setup.bash
 ```
 
+ - Run the launch file:
+
+`ros2 launch telemetry.launch.py`
+
+It is recommended to do this in a tmux container. 
+
+## Sending telemetry to server
+
+Because the ROS server expects messages at a specific ROS domain ID, we need to have another
+'session' in order to send the data to the server, so if you want to send data to the server, which is optional, repeat the previous steps (perhaps in another `tmux` container),
+then:
+
  - Set fastdds discovery server environment variable: `export ROS_DISCOVERY_SERVER=10.13.13.4:11811`
  - Set domain: `export ROS2_DOMAIN_ID=142`
 
@@ -42,17 +54,24 @@ colcon build --packages-select telemetry
 
 `ros2 run telemetry telemetry`
 
- - To read publisher:
+## Debugging RTKLIB
 
-```
-ros2 topic list
-ros2 topic echo rtk_top
-```
+RTKLIB has a telnet command-line debugging tool which is nice for seeing information about satellites etc. It requires a password which is randomly set every launch. To get the password:
 
-(Or just use one of the launch files...)
+`tmux attach -t rtkrcv`
+
+Then copy (`CTRL+C`) to your clipboard the password that's there. It is recommended to use another `tmux` container for attaching to the telnet console, because it appears that quitting the telnet console also stops the RTKRCV process (annoyingly):
+
+`tmux new -s telnet`
+
+And in that session:
+
+`telnet 127.0.0.1 2120`
+
+Paste in the password you copied earlier. Nice RTKRCV commands include `satellite` to show the connected satellites and `status` to see if it has a localization estimate.
 
 ## `robot_localization` install notes
 
 You might need to install:
-`sudo apt install libgeographic-dev ros-humble-geographic-msgs ros-humble-diagnostic-updater
+`sudo apt install libgeographic-dev ros-humble-geographic-msgs ros-humble-diagnostic-updater`
 
