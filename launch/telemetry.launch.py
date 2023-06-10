@@ -44,7 +44,14 @@ def generate_launch_description():
         package = "tf2_ros",
         executable = "static_transform_publisher",
         output = "screen",
-        arguments = ["-0.11", "0", "0.10", "0", "0", "0", "base_link", "rtk_link"]
+        arguments = ["-0.11", "0", "0.10", "0", "0", "0", "base_link", "gps_link"]
+    )
+
+    imu_tf2_node = actions.Node(
+        package = "tf2_ros",
+        executable = "static_transform_publisher",
+        output = "screen",
+        arguments = ["0.07", "0", "0", "0", "0", "0", "base_link", "imu_link"]
     )
 
 
@@ -60,9 +67,10 @@ def generate_launch_description():
         #SetEnvironmentVariable(name='ROS_DISCOVERY_SERVER', value='10.13.13.4:11811'),
         #SetEnvironmentVariable(name="ROS2_DOMAIN_ID", value="142"),
         navsat_node,
-        telemetry_node,
+        #telemetry_node,
         imu_node,
-#        rtk_tf2_node,
+        rtk_tf2_node,
+        imu_tf2_node
     ])
 
 
