@@ -1,0 +1,17 @@
+<osm version="0.6" generator="CGImap 0.8.8 (3177117 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<node id="388706027" visible="true" version="2" changeset="9825475" timestamp="2011-11-14T15:02:59Z" user="Borbus" uid="379166" lat="52.6282950" lon="1.2862414"/>
+<node id="388706028" visible="true" version="2" changeset="9825475" timestamp="2011-11-14T15:02:59Z" user="Borbus" uid="379166" lat="52.6281631" lon="1.2862199"/>
+<node id="388706030" visible="true" version="2" changeset="9825475" timestamp="2011-11-14T15:02:59Z" user="Borbus" uid="379166" lat="52.6280541" lon="1.2862414"/>
+<node id="388706031" visible="true" version="2" changeset="9825475" timestamp="2011-11-14T15:02:59Z" user="Borbus" uid="379166" lat="52.6278847" lon="1.2863513"/>
+<node id="2959807640" visible="true" version="1" changeset="24099791" timestamp="2014-07-12T12:20:51Z" user="Pink Duck" uid="91657" lat="52.6284250" lon="1.2862835"/>
+<way id="292424824" visible="true" version="4" changeset="131565901" timestamp="2023-01-22T12:53:10Z" user="rich257" uid="2966630">
+<nd ref="2959807640"/>
+<nd ref="388706027"/>
+<nd ref="388706028"/>
+<nd ref="388706030"/>
+<nd ref="388706031"/>
+<tag k="bicycle" v="yes"/>
+<tag k="highway" v="footway"/>
+<tag k="surface" v="asphalt"/>
+</way>
+</osm>

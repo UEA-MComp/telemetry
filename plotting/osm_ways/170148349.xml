@@ -1,0 +1,15 @@
+<osm version="0.6" generator="CGImap 0.8.8 (3177148 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+<node id="388705942" visible="true" version="2" changeset="9825475" timestamp="2011-11-14T15:02:57Z" user="Borbus" uid="379166" lat="52.6275184" lon="1.2887224"/>
+<node id="388705944" visible="true" version="2" changeset="9825475" timestamp="2011-11-14T15:02:57Z" user="Borbus" uid="379166" lat="52.6270381" lon="1.2884435"/>
+<node id="388705945" visible="true" version="2" changeset="9825475" timestamp="2011-11-14T15:02:57Z" user="Borbus" uid="379166" lat="52.6264846" lon="1.2881592"/>
+<node id="388705946" visible="true" version="3" changeset="9825552" timestamp="2011-11-14T15:09:45Z" user="Borbus" uid="379166" lat="52.6262287" lon="1.2880194"/>
+<way id="170148349" visible="true" version="3" changeset="119403526" timestamp="2022-04-06T20:59:48Z" user="Peter Sil" uid="14665199">
+<nd ref="388705942"/>
+<nd ref="388705944"/>
+<nd ref="388705945"/>
+<nd ref="388705946"/>
+<tag k="bicycle" v="yes"/>
+<tag k="highway" v="footway"/>
+<tag k="surface" v="paved"/>
+</way>
+</osm>

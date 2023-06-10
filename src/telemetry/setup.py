@@ -25,7 +25,8 @@ setup(
     entry_points={
         'console_scripts': [
             'telemetry = telemetry.telemetry:main',
-            'nmea_logger = telemetry.nmea_logger:main'
+            'nmea_logger = telemetry.nmea_logger:main',
+            "logger = telemetry.logger:main"
         ],
     },
 )
